@@ -12,6 +12,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NLog;
 using Microsoft.Extensions.Logging;
+using Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Main
 {
@@ -26,11 +28,12 @@ namespace Main
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services, IConfiguration config)
+        public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
             services.ConfigureLoggerService();
-            services.ConfigureDatabase(config);
+            services.AddDbContextPool<DataContext>(
+                    options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

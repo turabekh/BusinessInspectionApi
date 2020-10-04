@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "zXX8mXag903ejdADn/mr+k139HHqtikV5JSzo31LP0AP9CNUbdjlMnMUzLa38+en8TAuYEo7RkU6TLXJ2h6YAQ==",
+  "dgSpecHash": "TCqPJ3eB78ONzWIp5eXQ3oPmveIl+b/Zco2x0bw356iQ7vOK0+2qSIPj1odORH4HePTaJfj5U6Trzm2EDBXoxQ==",
   "success": true,
   "projectFilePath": "C:\\Projects\\BusinessInspection\\Models\\Models.csproj",
   "expectedPackageFiles": [
@@ -14,6 +14,7 @@
     "C:\\Users\\turab\\.nuget\\packages\\microsoft.entityframeworkcore.design\\3.1.8\\microsoft.entityframeworkcore.design.3.1.8.nupkg.sha512",
     "C:\\Users\\turab\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\3.1.8\\microsoft.entityframeworkcore.relational.3.1.8.nupkg.sha512",
     "C:\\Users\\turab\\.nuget\\packages\\microsoft.entityframeworkcore.sqlserver\\3.1.8\\microsoft.entityframeworkcore.sqlserver.3.1.8.nupkg.sha512",
+    "C:\\Users\\turab\\.nuget\\packages\\microsoft.entityframeworkcore.tools\\3.1.8\\microsoft.entityframeworkcore.tools.3.1.8.nupkg.sha512",
     "C:\\Users\\turab\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\3.1.8\\microsoft.extensions.caching.abstractions.3.1.8.nupkg.sha512",
     "C:\\Users\\turab\\.nuget\\packages\\microsoft.extensions.caching.memory\\3.1.8\\microsoft.extensions.caching.memory.3.1.8.nupkg.sha512",
     "C:\\Users\\turab\\.nuget\\packages\\microsoft.extensions.configuration\\3.1.8\\microsoft.extensions.configuration.3.1.8.nupkg.sha512",

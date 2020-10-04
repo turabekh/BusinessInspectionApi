@@ -57,7 +57,8 @@ namespace Models
             builder.Entity<Inspection>()
                 .HasOne(i => i.Business)
                 .WithMany(b => b.Inspections)
-                .HasForeignKey(i => i.BRCCode);
+                .HasForeignKey(i => i.CertificateNumber)
+                .HasPrincipalKey(b => b.BRCCode);
 
             builder.Entity<Inspection>()
                 .HasOne(i => i.EnforcementAgency)
