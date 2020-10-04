@@ -1,0 +1,11 @@
+C:\Projects\BusinessInspection\Models\bin\Debug\netcoreapp3.1\Models.deps.json
+C:\Projects\BusinessInspection\Models\bin\Debug\netcoreapp3.1\Models.runtimeconfig.json
+C:\Projects\BusinessInspection\Models\bin\Debug\netcoreapp3.1\Models.runtimeconfig.dev.json
+C:\Projects\BusinessInspection\Models\bin\Debug\netcoreapp3.1\Models.dll
+C:\Projects\BusinessInspection\Models\bin\Debug\netcoreapp3.1\Models.pdb
+C:\Projects\BusinessInspection\Models\obj\Debug\netcoreapp3.1\Models.AssemblyInfoInputs.cache
+C:\Projects\BusinessInspection\Models\obj\Debug\netcoreapp3.1\Models.AssemblyInfo.cs
+C:\Projects\BusinessInspection\Models\obj\Debug\netcoreapp3.1\Models.csproj.CoreCompileInputs.cache
+C:\Projects\BusinessInspection\Models\obj\Debug\netcoreapp3.1\Models.dll
+C:\Projects\BusinessInspection\Models\obj\Debug\netcoreapp3.1\Models.pdb
+C:\Projects\BusinessInspection\Models\obj\Debug\netcoreapp3.1\Models.genruntimeconfig.cache
