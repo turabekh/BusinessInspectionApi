@@ -1,0 +1,5 @@
+C:\Projects\BusinessInspection\Interfaces\bin\Debug\netcoreapp3.1\Interfaces.deps.json
+C:\Projects\BusinessInspection\Interfaces\bin\Debug\netcoreapp3.1\Interfaces.dll
+C:\Projects\BusinessInspection\Interfaces\obj\Debug\netcoreapp3.1\Interfaces.csprojAssemblyReference.cache
+C:\Projects\BusinessInspection\Interfaces\obj\Debug\netcoreapp3.1\Interfaces.AssemblyInfoInputs.cache
+C:\Projects\BusinessInspection\Interfaces\obj\Debug\netcoreapp3.1\Interfaces.AssemblyInfo.cs

@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Models;
+using Interfaces;
+using LoggerService;
 
 namespace Main
 {
@@ -16,6 +18,11 @@ namespace Main
         {
             services.AddDbContextPool<DataContext>(
                     options => options.UseSqlServer(config.GetConnectionString("DefaultConnection")));
+        }
+
+        public static void ConfigureLoggerService(this IServiceCollection services)
+        {
+            services.AddSingleton<ILoggerManager, LoggerManager>();
         }
     }
 }
