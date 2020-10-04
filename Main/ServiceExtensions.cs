@@ -24,5 +24,14 @@ namespace Main
         {
             services.AddSingleton<ILoggerManager, LoggerManager>();
         }
+
+        public static void ConfigureSwagger(this IServiceCollection services)
+        {
+            services.AddSwaggerGen(s =>
+            {
+                s.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "Business Inspection API", Version = "v1" });
+            });
+
+        }
     }
 }

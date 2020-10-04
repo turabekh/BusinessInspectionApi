@@ -34,6 +34,7 @@ namespace Main
             services.ConfigureLoggerService();
             services.AddDbContextPool<DataContext>(
                     options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.ConfigureSwagger();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,6 +54,12 @@ namespace Main
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+            });
+
+            app.UseSwagger();
+            app.UseSwaggerUI(s =>
+            {
+                s.SwaggerEndpoint("/swagger/v1/swagger.json", "Business Inspection API V1");
             });
         }
     }
