@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Models;
 using Interfaces;
 using LoggerService;
+using Repository;
 
 namespace Main
 {
@@ -32,6 +33,11 @@ namespace Main
                 s.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "Business Inspection API", Version = "v1" });
             });
 
+        }
+
+        public static void ConfigureRepositoryHub(this IServiceCollection services)
+        {
+            services.AddScoped<IRepositoryHub, RepositoryHub>();
         }
     }
 }

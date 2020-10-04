@@ -35,6 +35,7 @@ namespace Main
             services.AddDbContextPool<DataContext>(
                     options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.ConfigureSwagger();
+            services.ConfigureRepositoryHub();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,6 +45,8 @@ namespace Main
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseExceptionHandler("/api/error");
 
             app.UseHttpsRedirection();
 
