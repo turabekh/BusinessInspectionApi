@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Projects\\BusinessInspection\\Models\\Models.csproj": {}
+    "C:\\Projects\\BusinessInspection\\Interfaces\\Interfaces.csproj": {}
   },
   "projects": {
-    "C:\\Projects\\BusinessInspection\\Models\\Models.csproj": {
+    "C:\\Projects\\BusinessInspection\\Interfaces\\Interfaces.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Projects\\BusinessInspection\\Models\\Models.csproj",
-        "projectName": "Models",
-        "projectPath": "C:\\Projects\\BusinessInspection\\Models\\Models.csproj",
+        "projectUniqueName": "C:\\Projects\\BusinessInspection\\Interfaces\\Interfaces.csproj",
+        "projectName": "Interfaces",
+        "projectPath": "C:\\Projects\\BusinessInspection\\Interfaces\\Interfaces.csproj",
         "packagesPath": "C:\\Users\\turab\\.nuget\\packages\\",
-        "outputPath": "C:\\Projects\\BusinessInspection\\Models\\obj\\",
+        "outputPath": "C:\\Projects\\BusinessInspection\\Interfaces\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\turab\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -37,22 +37,6 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
-          "dependencies": {
-            "Microsoft.EntityFrameworkCore": {
-              "target": "Package",
-              "version": "[3.1.8, )"
-            },
-            "Microsoft.EntityFrameworkCore.Design": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[3.1.8, )"
-            },
-            "Microsoft.EntityFrameworkCore.SqlServer": {
-              "target": "Package",
-              "version": "[3.1.8, )"
-            }
-          },
           "imports": [
             "net461",
             "net462",
