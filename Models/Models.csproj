@@ -13,4 +13,9 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="DataTransferObjects\Create\" />
+    <Folder Include="DataTransferObjects\Update\" />
+  </ItemGroup>
+
 </Project>

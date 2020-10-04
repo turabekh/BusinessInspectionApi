@@ -24,11 +24,5 @@ namespace Main.Controllers
             _repo = repo;
         }
 
-
-        [HttpGet("/businesses")]
-        public IActionResult GetBusinesses()
-        {
-            
-        }
     }
 }

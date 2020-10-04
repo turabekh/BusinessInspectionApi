@@ -14,6 +14,7 @@ using NLog;
 using Microsoft.Extensions.Logging;
 using Models;
 using Microsoft.EntityFrameworkCore;
+using AutoMapper;
 
 namespace Main
 {
@@ -36,6 +37,7 @@ namespace Main
                     options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.ConfigureSwagger();
             services.ConfigureRepositoryHub();
+            services.AddAutoMapper(typeof(Startup));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
