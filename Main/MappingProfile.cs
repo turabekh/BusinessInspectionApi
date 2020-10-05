@@ -25,7 +25,10 @@ namespace Main
                     opt => opt.MapFrom(src => src.InspectionGuidelines))
                 .ForMember(dest =>
                     dest.InspectionType,
-                    opt => opt.MapFrom(src => src.InspectionType.Name));
+                    opt => opt.MapFrom(src => src.InspectionType.Name))
+                .ForMember(dest =>
+                    dest.BusinessName,
+                    opt => opt.MapFrom(src => src.Business.BusinessName));
             CreateMap<InspectionGuideline, InspectionGuidelineDto>().ReverseMap();
             CreateMap<InspectionType, InspectionTypeDto>().ReverseMap();
             CreateMap<Sector, SectorDto>().ReverseMap();

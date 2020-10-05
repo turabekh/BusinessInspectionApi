@@ -8,7 +8,7 @@ namespace Models.DataTransferObjects.Read
     {
         public int Id { get; set; }
         public string CertificateNumber { get; set; }
-        public string BusinessBusinessName { get; set; }
+        public string BusinessName { get; set; }
         public string EnforcementAgencyName { get; set; }
         public string InspectionType { get; set; }
         public DateTime DateCreated { get; set; }

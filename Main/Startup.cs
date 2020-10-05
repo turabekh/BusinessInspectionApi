@@ -18,6 +18,8 @@ using AutoMapper;
 using Microsoft.AspNet.OData.Extensions;
 using Microsoft.AspNet.OData.Builder;
 using Microsoft.OData.Edm;
+using Microsoft.AspNet.OData.Formatter;
+using Microsoft.Net.Http.Headers;
 
 namespace Main
 {
@@ -48,6 +50,24 @@ namespace Main
                .AddNewtonsoftJson();
                 
             services.AddOData();
+
+            services.AddMvc(op =>
+            {
+                foreach (var formatter in op.OutputFormatters
+                    .OfType<ODataOutputFormatter>()
+                    .Where(it => !it.SupportedMediaTypes.Any()))
+                {
+                    formatter.SupportedMediaTypes.Add(
+                        new MediaTypeHeaderValue("application/prs.mock-odata"));
+                }
+                foreach (var formatter in op.InputFormatters
+                    .OfType<ODataInputFormatter>()
+                    .Where(it => !it.SupportedMediaTypes.Any()))
+                {
+                    formatter.SupportedMediaTypes.Add(
+                        new MediaTypeHeaderValue("application/prs.mock-odata"));
+                }
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -66,32 +86,34 @@ namespace Main
 
             app.UseAuthorization();
 
-            app.UseMvc(routeBuilder =>
-            {
-                routeBuilder.Select().Filter();
-                routeBuilder.EnableDependencyInjection();
-                routeBuilder.MapODataServiceRoute("odata", "odata", GetEdmModel());
-            });
-
-            //app.UseEndpoints(endpoints =>
+            //app.UseMvc(routeBuilder =>
             //{
-            //    endpoints.MapControllers();
-            //    endpoints.Select().Filter().OrderBy().Count().MaxTop(10);
-            //    endpoints.EnableDependencyInjection();
-            //    endpoints.MapODataRoute("odata", "odata", GetEdmModel());
+            //    routeBuilder.Select().Filter();
+            //    routeBuilder.EnableDependencyInjection();
+            //    routeBuilder.MapODataServiceRoute("odata", "odata", GetEdmModel());
             //});
-
             app.UseSwagger();
             app.UseSwaggerUI(s =>
             {
                 s.SwaggerEndpoint("/swagger/v1/swagger.json", "Business Inspection API V1");
             });
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+                endpoints.Select().Filter().OrderBy().Count().Expand().MaxTop(10);
+                endpoints.EnableDependencyInjection();
+                endpoints.MapODataRoute("odata", "odata", GetEdmModel());
+            });
+
+
         }
 
             IEdmModel GetEdmModel()
             {
                 var odataBuilder = new ODataConventionModelBuilder();
                 odataBuilder.EntitySet<Business>("Businesses");
+                odataBuilder.EntitySet<Inspection>("Inspections");
 
                 return odataBuilder.GetEdmModel();
             }
