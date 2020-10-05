@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Interfaces;
 using Main.ApiErrors;
+using Microsoft.AspNet.OData;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Models.DataTransferObjects.Read;
@@ -29,6 +30,7 @@ namespace Main.Controllers
 
 
         [HttpGet("", Name = "GetAllBusinesses")]
+        [EnableQuery()]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesDefaultResponseType]
@@ -55,6 +57,7 @@ namespace Main.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesDefaultResponseType]
+        [EnableQuery()]
         public async Task<IActionResult> GetBusinessByBRCCode(string certificateNumber)
         {
             try

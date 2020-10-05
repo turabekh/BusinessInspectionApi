@@ -15,6 +15,9 @@ using Microsoft.Extensions.Logging;
 using Models;
 using Microsoft.EntityFrameworkCore;
 using AutoMapper;
+using Microsoft.AspNet.OData.Extensions;
+using Microsoft.AspNet.OData.Builder;
+using Microsoft.OData.Edm;
 
 namespace Main
 {
@@ -25,6 +28,8 @@ namespace Main
             LogManager.LoadConfiguration(String.Concat(Directory.GetCurrentDirectory(), "/nlog.config"));
             Configuration = configuration;
         }
+
+
 
         public IConfiguration Configuration { get; }
 
@@ -38,6 +43,11 @@ namespace Main
             services.ConfigureSwagger();
             services.ConfigureRepositoryHub();
             services.AddAutoMapper(typeof(Startup));
+            services.AddControllers(mvcOptions =>
+                   mvcOptions.EnableEndpointRouting = false)
+               .AddNewtonsoftJson();
+                
+            services.AddOData();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -56,10 +66,20 @@ namespace Main
 
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
+            app.UseMvc(routeBuilder =>
             {
-                endpoints.MapControllers();
+                routeBuilder.Select().Filter();
+                routeBuilder.EnableDependencyInjection();
+                routeBuilder.MapODataServiceRoute("odata", "odata", GetEdmModel());
             });
+
+            //app.UseEndpoints(endpoints =>
+            //{
+            //    endpoints.MapControllers();
+            //    endpoints.Select().Filter().OrderBy().Count().MaxTop(10);
+            //    endpoints.EnableDependencyInjection();
+            //    endpoints.MapODataRoute("odata", "odata", GetEdmModel());
+            //});
 
             app.UseSwagger();
             app.UseSwaggerUI(s =>
@@ -67,5 +87,13 @@ namespace Main
                 s.SwaggerEndpoint("/swagger/v1/swagger.json", "Business Inspection API V1");
             });
         }
+
+            IEdmModel GetEdmModel()
+            {
+                var odataBuilder = new ODataConventionModelBuilder();
+                odataBuilder.EntitySet<Business>("Businesses");
+
+                return odataBuilder.GetEdmModel();
+            }
     }
 }
