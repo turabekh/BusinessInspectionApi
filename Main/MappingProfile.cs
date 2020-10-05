@@ -12,14 +12,23 @@ namespace Main
     {
         public MappingProfile()
         {
-            CreateMap<Business, BusinessDto>();
-            CreateMap<County, CountyDto>();
-            CreateMap<EnforcementAgency, EnforcementAgencyDto>();
-            CreateMap<Guideline, GuidelineDto>();
-            CreateMap<Inspection, InspectionDto>();
-            CreateMap<InspectionGuideline, InspectionGuidelineDto>();
-            CreateMap<InspectionType, InspectionTypeDto>();
-            CreateMap<Sector, SectorDto>();
+            CreateMap<Business, BusinessDto>().ReverseMap(); ;
+            CreateMap<County, CountyDto>().ReverseMap();
+            CreateMap<EnforcementAgency, EnforcementAgencyDto>().ReverseMap();
+            CreateMap<Guideline, GuidelineDto>().ReverseMap();
+            CreateMap<Inspection, InspectionDto>()
+                .ForMember(dest =>
+                    dest.CertificateNumber,
+                    opt => opt.MapFrom(src => src.Business.BRCCode))
+                .ForMember(dest =>
+                    dest.InspectionGuidelineDtos,
+                    opt => opt.MapFrom(src => src.InspectionGuidelines))
+                .ForMember(dest =>
+                    dest.InspectionType,
+                    opt => opt.MapFrom(src => src.InspectionType.Name));
+            CreateMap<InspectionGuideline, InspectionGuidelineDto>().ReverseMap();
+            CreateMap<InspectionType, InspectionTypeDto>().ReverseMap();
+            CreateMap<Sector, SectorDto>().ReverseMap();
         }
     }
 }
