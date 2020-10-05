@@ -14,5 +14,6 @@ namespace Interfaces
         void Update(T model);
         void Delete(T model);
 
+
     }
 }

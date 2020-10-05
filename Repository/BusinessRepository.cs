@@ -1,6 +1,7 @@
 ﻿using Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Models;
+using Models.Parameters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,16 @@ namespace Repository
         public BusinessRepository(DataContext dataContext) : base(dataContext)
         {
 
+        }
+        public async Task<PageList<Business>> GetAllBusinesses(BusinessParameters businessParameters)
+        {
+            return await PageList<Business>.ToPageList(GetAll()
+                .Include(b => b.County)
+                .Include(b => b.Sector)
+                .Include(b => b.Inspections).ThenInclude(i => i.InspectionType)
+                .Include(b => b.Inspections).ThenInclude(i => i.EnforcementAgency)
+                .Include(b => b.Inspections).ThenInclude(i => i.InspectionGuidelines).ThenInclude(g => g.Guideline)
+                .OrderBy(b => b.BusinessName), businessParameters.PageNumber, businessParameters.PageSize);
         }
 
         public async Task<IEnumerable<Business>> GetAllBusinesses()

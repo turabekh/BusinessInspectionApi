@@ -9,7 +9,10 @@ using Main.ApiErrors;
 using Microsoft.AspNet.OData;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Models;
 using Models.DataTransferObjects.Read;
+using Models.Parameters;
+using Newtonsoft.Json;
 
 [assembly:ApiConventionType(typeof(DefaultApiConventions))]
 namespace Main.Controllers
@@ -34,12 +37,16 @@ namespace Main.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesDefaultResponseType]
-        public async Task<IActionResult> GetBusinesses()
+        public async Task<IActionResult> GetBusinesses([FromQuery] BusinessParameters businessParameters)
         {
             try
             {
-                var businesses = await _repo.Business.GetAllBusinesses();
+                var businesses = await _repo.Business.GetAllBusinesses(businessParameters);
                 _logger.LogInfo("Retrived All businesses from DB. Action: GetBusinesses");
+
+                var metadata = new PaginationMetadata<Business>(businesses);
+
+                Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(metadata));
 
                 var businessesResult = _mapper.Map<IEnumerable<BusinessDto>>(businesses);
                 return Ok(businessesResult);
