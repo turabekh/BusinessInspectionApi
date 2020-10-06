@@ -8,7 +8,10 @@ using Main.ApiErrors;
 using Microsoft.AspNet.OData;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Models;
 using Models.DataTransferObjects.Read;
+using Models.Parameters;
+using Newtonsoft.Json;
 
 [assembly: ApiConventionType(typeof(DefaultApiConventions))]
 namespace Main.Controllers
@@ -33,12 +36,15 @@ namespace Main.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesDefaultResponseType]
-        public async Task<IActionResult> GetAllInspections()
+        public async Task<IActionResult> GetAllInspections([FromQuery] InspectionParameters inspectionParameters)
         {
             try
             {
-                var inspections = await _repo.Inspection.GetAllInspections();
+                var inspections = await _repo.Inspection.GetAllInspections(inspectionParameters);
                 _logger.LogInfo("Retrived All inspections from DB. Action: GetAllInspections");
+
+                var metadata = new PaginationMetadata<Inspection>(inspections);
+                Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(metadata));
 
                 var inspectionsResult = _mapper.Map<IEnumerable<InspectionDto>>(inspections);
                 return Ok(inspectionsResult);
